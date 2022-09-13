@@ -22,6 +22,14 @@ public class HomeController : Controller
     {
         return View();
     }
+     [HttpPost]
+    public IActionResult Index (String FullName )
+    {
+    ViewBag.name = "hello" + FullName; 
+    return View();
+    }
+  
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
