@@ -4,36 +4,30 @@ using VuKhacTruongBTH.Models;
 
 namespace VuKhacTruongBTH.Controllers;
 
-public class HomeController : Controller
+public class StudentController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
 
     public IActionResult Index()
     {
+        //khoi toa list studen
+        List<Student> stdList = new List<Student>()
+        {
+            new Student {StudentID = 1, StudentName = "Nguyen Van A", Age = 18},
+            new Student {StudentID = 2, StudentName = "Nguyen Van B", Age = 18},
+            new Student {StudentID = 3, StudentName = "Nguyen Van C", Age = 18},
+            new Student {StudentID = 4, StudentName = "Nguyen Van D", Age = 18},
+            new Student {StudentID = 5, StudentName = "Nguyen Van E", Age = 18}
+        };
+        ViewData["Students"] = stdList;
         return View();
     }
-
-    public IActionResult Privacy()
+    [HttpPost]
+    public IActionResult Create(Student std)
     {
+        //string message = std.Student + "-";
+        //message += std.StudentName + "-";
+        //message += std.Age;
+        //ViewBag.TT = message;
         return View();
-    }
-     [HttpPost]
-    public IActionResult Index (String FullName )
-    {
-    ViewBag.name = "hello" + FullName; 
-    return View();
-    }
-  
-
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
